@@ -5,37 +5,27 @@
  */
 package controle;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import modelo.bean.Usuario;
-import org.hibernate.Session;
-import util.HibernateUtil;
 
 /**
  *
  * @author bruno
  */
-public class UsuaFactory {
+public class UsuaFactory extends Factory {
 
-    public void salvar(Usuario u) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("UsuarioPU");
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        em.persist(u);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+    public void salvar(Object obj) {
+        super.salvar(obj, "UsuarioPU");
     }
     
-    public List<Usuario> consultar() {
-        Session session = new HibernateUtil().getSessionFactory().openSession();
-        List<Usuario> list = session.createQuery("from Usuario").list();
-        session.flush();
-        session.close();
-        
-        return list; 
+    public Object consultar() {
+        return super.consultar("from Usuario");
+    }
+    
+    public Object consultar(Usuario u) {
+        return super.consultar("from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'");
+    }
+    
+    public void alterar(Object obj) {
+        super.alterar(obj);
     }
 }

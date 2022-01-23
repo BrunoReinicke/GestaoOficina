@@ -23,6 +23,18 @@ public class Usuario implements Serializable {
     private Integer id;
     private String usuario;
     private String senha;
+    private char tipo;
+    
+    public Usuario() {
+    
+    }
+    
+    public Usuario(Integer id, String usuario, String senha, char tipo) {
+        this.id = id;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.tipo  = tipo;
+    }
 
     public Integer getId() {
         return id;
@@ -48,8 +60,16 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public char getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(char tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", senha=" + senha + '}';
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", senha=" + senha + ", tipo=" + tipo + '}';
     }
 }

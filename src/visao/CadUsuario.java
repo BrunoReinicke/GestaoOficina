@@ -16,6 +16,14 @@ public class CadUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CadUsuario
      */
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTFUsuario;
+    // End of variables declaration 
+    
     public CadUsuario() {
         initComponents();
     }
@@ -30,12 +38,12 @@ public class CadUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTFSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTFUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Salvar");
         jButton1.setName("btnSalvar"); // NOI18N
@@ -44,8 +52,6 @@ public class CadUsuario extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-
-        jTFSenha.setName("edSenha"); // NOI18N
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Senha:");
@@ -56,6 +62,8 @@ public class CadUsuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Usuário:");
         jLabel1.setName("lbUsuario"); // NOI18N
+
+        jPasswordField1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,9 +83,9 @@ public class CadUsuario extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1))))
                 .addContainerGap(205, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,10 +98,10 @@ public class CadUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(0, 202, Short.MAX_VALUE))
+                .addGap(0, 204, Short.MAX_VALUE))
         );
 
         jTFUsuario.getAccessibleContext().setAccessibleName("");
@@ -102,29 +110,19 @@ public class CadUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        String senha = "";   
+        for (int i = 0; i < jPasswordField1.getPassword().length; i++) {
+            senha += jPasswordField1.getPassword()[i];
+        }
+        
         Usuario u = new Usuario();
         u.setUsuario(jTFUsuario.getText());
-        u.setSenha(jTFSenha.getText());
+        u.setSenha(senha);
         
         new UsuaFactory().salvar(u);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadUsuario().setVisible(true);
-            }
-        });
-    }*/
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTFSenha;
-    private javax.swing.JTextField jTFUsuario;
-    // End of variables declaration//GEN-END:variables
+    public void fechar() {
+        this.dispose();
+    }
 }

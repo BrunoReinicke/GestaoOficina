@@ -19,20 +19,20 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 
-    private SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory;
        
-    public SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
              
         // builds a session factory from the service registry 
         try {
-            this.sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (HibernateException e) {
             System.out.println("Criação inicial do objeto SessionFactory falhou. Erro: "+ e);
             throw new ExceptionInInitializerError(e);
         } 
 
-        return this.sessionFactory;
+        return sessionFactory;
     }
 }

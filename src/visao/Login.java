@@ -125,13 +125,12 @@ public class Login extends javax.swing.JFrame {
         Usuario u = new Usuario();
         u.setUsuario(jTextField1.getText());
         u.setSenha(senha);
-        List<Usuario> lUs = (List<Usuario>) new UsuaFactory().consultar(u);
-        
-        if (!lUs.isEmpty()) {
+       
+        if (new UsuaFactory().isLogged(u)) {
             this.btnCadUsu.setVisible(true);
             this.btnConsUsu.setVisible(true);
             this.btnConsOS.setVisible(true);
-            this.idUsuario = lUs.get(0).getId();
+            this.idUsuario = u.getId();
             this.dispose();
         }
     }//GEN-LAST:event_jButton1MouseClicked

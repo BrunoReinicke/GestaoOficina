@@ -39,15 +39,14 @@ public class Factory {
         return list; 
     }
     
-    protected void excluir(Object obj, String pers) {
+    protected void excluir(String pers, Integer id, Object o) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(pers);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();  
+        Object obj = em.find(o.getClass(), id);
         
         em.getTransaction().begin();
         em.remove(obj);
         em.getTransaction().commit();
-        em.close();
-        emf.close();
     }
     
     protected void alterar(Object obj) {

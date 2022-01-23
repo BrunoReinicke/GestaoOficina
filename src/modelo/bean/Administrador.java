@@ -23,7 +23,7 @@ public class Administrador implements Serializable {
     
     private Integer id;
     private String nome;
-    private String idade;
+    private int idade;
     private char sexo;
     private String cpf;
     private String rg;
@@ -51,11 +51,11 @@ public class Administrador implements Serializable {
         this.nome = nome;
     }
 
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
@@ -129,6 +129,6 @@ public class Administrador implements Serializable {
     public String toString() {
         return "Administrador{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + 
                ", cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", cidade=" + cidade + 
-               ", uf=" + uf + ", pais=" + pais + ", usu=" + usu + '}';
+               ", uf=" + uf + ", pais=" + pais + ", usu=" + usu.toString() + '}';
     }
 }

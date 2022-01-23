@@ -5,24 +5,20 @@
  */
 package controle;
 
-import modelo.bean.Usuario;
+import modelo.bean.Administrador;
 
 /**
  *
  * @author bruno
  */
-public class UsuaFactory extends Factory {
-
+public class AdminFactory extends Factory {
+    
     public void salvar(Object obj) {
-        super.salvar(obj, "UsuarioPU");
+        super.salvar(obj, "AdministradorPU");
     }
     
     public Object consultar() {
-        return super.consultar("from Usuario");
-    }
-    
-    public boolean isLogged(Usuario u) {
-        return super.consultar("from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'") != null; 
+        return super.consultar("from Administrador");
     }
     
     public void alterar(Object obj) {
@@ -30,10 +26,10 @@ public class UsuaFactory extends Factory {
     }
     
     public Object consultar(Integer id) {
-        return super.consultar("from Usuario where id = " + id);
+        return super.consultar("from Administrador where id = " + id);
     }
     
     public void excluir(Integer id) {
-        super.excluir("UsuarioPU", id, new Usuario());
+        super.excluir("AdministradorPU", id, new Administrador());
     }
 }

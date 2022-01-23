@@ -9,8 +9,6 @@ import controle.UsuaFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.bean.Usuario;
-import org.hibernate.Session;
-import util.HibernateUtil;
 
 /**
  *

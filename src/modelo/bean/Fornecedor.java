@@ -21,7 +21,7 @@ public class Fornecedor implements Serializable {
 
     private Integer id;
     private String nome;
-    private String idade;
+    private int idade;
     private char sexo;
     private String cpf;
     private String rg;
@@ -30,6 +30,22 @@ public class Fornecedor implements Serializable {
     private String uf;
     private String pais;
 
+    public Fornecedor () {
+    }
+
+    public Fornecedor(Integer id, String nome, int idade, char sexo, String cpf, String rg, Date dataNasc, String cidade, String uf, String pais) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.dataNasc = dataNasc;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.pais = pais;
+    }
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
@@ -48,11 +64,11 @@ public class Fornecedor implements Serializable {
         this.nome = nome;
     }
 
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
@@ -111,4 +127,11 @@ public class Fornecedor implements Serializable {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    @Override
+    public String toString() {
+        return "Fornecedor{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + 
+            ", sexo=" + sexo + ", cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + 
+            ", cidade=" + cidade + ", uf=" + uf + ", pais=" + pais + '}';
+    }    
 }

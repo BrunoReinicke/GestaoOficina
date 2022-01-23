@@ -95,5 +95,11 @@ public class Carro implements Serializable {
 
     public void setPais(String pais) {
         this.pais = pais;
-    }    
+    }  
+
+    @Override
+    public String toString() {
+        return "Carro{" + "id=" + id + ", nome=" + nome + ", ano=" + ano + ", dono=" + dono.toString() + 
+               ", placa=" + placa + ", cidade=" + cidade + ", uf=" + uf + ", pais=" + pais + '}';
+    }
 }

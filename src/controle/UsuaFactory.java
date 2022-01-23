@@ -25,6 +25,7 @@ public class UsuaFactory extends Factory {
         return super.consultar("from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'") != null; 
     }
     
+    @Override
     public void alterar(Object obj) {
         super.alterar(obj);
     }

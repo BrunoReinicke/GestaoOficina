@@ -33,9 +33,9 @@ public class TesteUsuario {
         // Consulta
         List<Usuario> lstUsu = (List<Usuario>) new UsuaFactory().consultar();
         System.out.println("Consulta sem filtro:");
-        for (Usuario us : lstUsu) {
+        lstUsu.forEach((us) -> {
             System.out.println(us.toString());
-        }
+        });
         
         
         // Alteração  
@@ -73,9 +73,9 @@ public class TesteUsuario {
         // Consulta
         List<Usuario> lstUsu3 = (List<Usuario>) new UsuaFactory().consultar();
         System.out.println("Consulta sem filtro:");
-        for (Usuario us : lstUsu3) {
+        lstUsu3.forEach((us) -> {
             System.out.println(us.toString());
-        }
+        });
         
         
         // Está logado
@@ -83,5 +83,12 @@ public class TesteUsuario {
         usua4.setUsuario("user");
         usua4.setSenha("pass");
         System.out.println("Logado? " + new UsuaFactory().isLogged(usua4));
+        
+        
+        Usuario usua5 = new Usuario();
+        usua5.setUsuario("bruno");
+        usua5.setSenha("12345");
+        usua5.setTipo('C');
+        new UsuaFactory().salvar(usua5);
     }
 }

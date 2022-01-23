@@ -5,20 +5,20 @@
  */
 package controle;
 
-import modelo.bean.Administrador;
+import modelo.bean.Cliente;
 
 /**
  *
  * @author bruno
  */
-public class AdminFactory extends Factory {
+public class ClienteFactory extends Factory {
     
     public void salvar(Object obj) {
-        super.salvar(obj, "AdministradorPU");
+        super.salvar(obj, "ClientePU");
     }
     
     public Object consultar() {
-        return super.consultar("from Administrador");
+        return super.consultar("from Cliente");
     }
     
     @Override
@@ -27,10 +27,10 @@ public class AdminFactory extends Factory {
     }
     
     public Object consultar(Integer id) {
-        return super.consultar("from Administrador where id = " + id);
+        return super.consultar("from Cliente where id = " + id);
     }
     
     public void excluir(Integer id) {
-        super.excluir("AdministradorPU", id, new Administrador());
+        super.excluir("ClientePU", id, new Cliente());
     }
 }

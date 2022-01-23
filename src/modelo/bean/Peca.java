@@ -87,4 +87,10 @@ public class Peca implements Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Peca{" + "id=" + id + ", nome=" + nome + ", ano=" + ano + ", preco=" + preco + 
+               ", marca=" + marca + ", forn=" + forn.toString() + ", categoria=" + categoria + '}';
+    }
 }

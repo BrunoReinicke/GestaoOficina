@@ -17,13 +17,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class Cliente implements Serializable {
     
     private Integer id;
     private String nome;
-    private String idade;
+    private int idade;
     private char sexo;
     private String cpf;
     private String rg;
@@ -51,11 +52,11 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
@@ -83,6 +84,7 @@ public class Cliente implements Serializable {
         this.rg = rg;
     }
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDataNasc() {
         return dataNasc;
     }
@@ -129,6 +131,6 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + 
                ", cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", cidade=" + cidade + 
-               ", uf=" + uf + ", pais=" + pais + ", usu=" + usu + '}';
+               ", uf=" + uf + ", pais=" + pais + ", usu=" + usu.toString() + '}';
     }
 }

@@ -78,5 +78,17 @@ public class TesteFornecedor {
         forn3.setUf("SC");
         forn3.setPais("Brasil");
         new FornecFactory().salvar(forn3);
+        
+        Fornecedor forn4 = new Fornecedor();
+        forn4.setNome("aaa");
+        forn4.setIdade(29);
+        forn4.setSexo('M');
+        forn4.setCpf("***.***.***-**");
+        forn4.setRg("*.***.***");
+        forn4.setDataNasc(formato.parse("13/01/1993"));
+        forn4.setCidade("AAA");
+        forn4.setUf("bbb");
+        forn4.setPais("Brasil");
+        new FornecFactory().salvar(forn4);
     }
 }

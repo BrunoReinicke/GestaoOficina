@@ -6,7 +6,9 @@
 package controle;
 
 import modelo.bean.OrdemServico;
-
+import java.util.List;
+import org.hibernate.criterion.Order;
+import util.HibernateUtil;
 /**
  *
  * @author bruno
@@ -14,31 +16,44 @@ import modelo.bean.OrdemServico;
 public class OrdemServFactory extends Factory {
 
     public void salvar(Object obj) {
+        List<Object> lstOS = 
+            super.consultar(
+                "from OrdemServico where idCarro = " + ((OrdemServico) obj).getCarro().getId() + " and status = 0");
+        
+        if (lstOS.size() > 0) {
+            ((OrdemServico) obj).setNumero(((OrdemServico) lstOS.get(0)).getNumero());
+        } else {
+            try {
+                ((OrdemServico) obj).setNumero(
+                    ((OrdemServico) HibernateUtil.getSessionFactory().openSession().createCriteria(OrdemServico.class)
+                    .addOrder(Order.desc("numero"))
+                    .setMaxResults(1)
+                    .uniqueResult()).getNumero() + 1
+                );   
+            } catch (NullPointerException ex) {
+                ((OrdemServico) obj).setNumero(1);
+            }
+        }
         super.salvar(obj, "OrdemServicoPU");
     }
     
-    public Object consultar(int id) {
-        return super.consultar("from OrdemServico where idUsuario = " + id);
+    public Object consultar() {
+        return super.consultar("from OrdemServico");
     }
     
-    /*public void salvar(OrdemServico os) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("OrdemServicoPU");
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        em.persist(os);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+    @Override
+    public void alterar(Object obj) {
+        super.alterar(obj);
     }
     
-    public List<OrdemServico> consultar(int idUsuario) {
-        Session session = new HibernateUtil().getSessionFactory().openSession();
-        List<OrdemServico> list = 
-            session.createQuery("from OrdemServico where idUsuario = " + idUsuario).list();
-        session.flush();
-        session.close();
-        
-        return list; 
-    }*/
+    public Object consultar(Integer numero) {
+        return super.consultar("from OrdemServico where numero = " + numero);
+    }
+    
+    public void excluir(Integer numero) {
+        List<OrdemServico> lstOS = (List<OrdemServico>) this.consultar(numero);
+        lstOS.forEach((os) -> {
+            super.excluir("OrdemServicoPU", os.getId(), new OrdemServico());
+        });
+    }
 }

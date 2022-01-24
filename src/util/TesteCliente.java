@@ -69,5 +69,18 @@ public class TesteCliente {
         lstClie2.forEach((clie2) -> {
             System.out.println(clie2.toString());
         });
+        
+        Cliente cli3 = new Cliente();
+        cli3.setNome("Bruno");
+        cli3.setIdade(25);
+        cli3.setSexo('M');
+        cli3.setCpf("***.***.***-**");
+        cli3.setRg("*.***.***");
+        cli3.setDataNasc(formato.parse("14/02/1996"));
+        cli3.setCidade("Pomerode");
+        cli3.setUf("SC");
+        cli3.setPais("Brasil");
+        cli3.setUsu(new Usuario(3, "bruno", "12345", 'C'));
+        new ClienteFactory().salvar(cli3);
     }
 }

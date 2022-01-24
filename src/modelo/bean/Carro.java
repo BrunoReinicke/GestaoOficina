@@ -28,7 +28,23 @@ public class Carro implements Serializable {
     private String cidade;
     private String uf;
     private String pais;
+    private String marca;
 
+    public Carro() {
+    }
+
+    public Carro(Integer id, String nome, Integer ano, Cliente dono, String placa, String cidade, String uf, String pais, String marca) {
+        this.id = id;
+        this.nome = nome;
+        this.ano = ano;
+        this.dono = dono;
+        this.placa = placa;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.pais = pais;
+        this.marca = marca;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
@@ -101,5 +117,13 @@ public class Carro implements Serializable {
     public String toString() {
         return "Carro{" + "id=" + id + ", nome=" + nome + ", ano=" + ano + ", dono=" + dono.toString() + 
                ", placa=" + placa + ", cidade=" + cidade + ", uf=" + uf + ", pais=" + pais + '}';
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 }

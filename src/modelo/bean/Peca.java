@@ -28,6 +28,19 @@ public class Peca implements Serializable {
     private Fornecedor forn;
     private String categoria;
 
+    public Peca() {
+    }
+
+    public Peca(Integer id, String nome, Integer ano, double preco, String marca, Fornecedor forn, String categoria) {
+        this.id = id;
+        this.nome = nome;
+        this.ano = ano;
+        this.preco = preco;
+        this.marca = marca;
+        this.forn = forn;
+        this.categoria = categoria;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

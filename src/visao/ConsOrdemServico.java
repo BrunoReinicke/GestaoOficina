@@ -107,8 +107,8 @@ public class ConsOrdemServico extends javax.swing.JFrame {
             modelo.addRow(new String[]{
                 list.get(i).getId().toString(), 
                 //list.get(i).getIdCliente().toString(), 
-                list.get(i).getIdCarro().toString(),
-                list.get(i).getIdPeca().toString(),
+                //list.get(i).getIdCarro().toString(),
+                //list.get(i).getIdPeca().toString(),
                 list.get(i).getDtAbertura().toString(),
                 list.get(i).getDtEncerramento().toString(),
                 list.get(i).getPrazoEntrega().toString(),

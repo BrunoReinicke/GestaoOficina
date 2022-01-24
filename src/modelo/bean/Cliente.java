@@ -34,6 +34,22 @@ public class Cliente implements Serializable {
     private String pais;
     private Usuario usu;
     
+    public Cliente() {}
+
+    public Cliente(Integer id, String nome, int idade, char sexo, String cpf, String rg, Date dataNasc, String cidade, String uf, String pais, Usuario usu) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.dataNasc = dataNasc;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.pais = pais;
+        this.usu = usu;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

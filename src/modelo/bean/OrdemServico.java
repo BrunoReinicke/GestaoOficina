@@ -14,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 /**
  *
  * @author bruno
@@ -26,15 +28,15 @@ import javax.persistence.Table;
 public class OrdemServico implements Serializable {
     
     private Integer id;
-    private Integer idCarro;
-    private Integer idPeca;
+    private Carro carro;
+    private Peca peca;
     private Integer numero;
     private Integer status;
     private Date dtAbertura;
     private Date dtEncerramento;
     private Date prazoEntrega;
     private boolean pecaTrocada;
-    private Cliente idCliente;
+    private Cliente cliente;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,22 +48,27 @@ public class OrdemServico implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdCarro() {
-        return idCarro;
+    @ManyToOne
+    @JoinColumn(name = "idCarro")
+    public Carro getCarro() {
+        return carro;
     }
 
-    public void setIdCarro(Integer idCarro) {
-        this.idCarro = idCarro;
+    public void setCarro(Carro carro) {
+        this.carro = carro;
     }
 
-    public Integer getIdPeca() {
-        return idPeca;
+    @OneToOne
+    @JoinColumn(name = "idPeca")
+    public Peca getPeca() {
+        return peca;
     }
 
-    public void setIdPeca(Integer idPeca) {
-        this.idPeca = idPeca;
+    public void setPeca(Peca peca) {
+        this.peca = peca;
     }
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDtAbertura() {
         return dtAbertura;
     }
@@ -70,6 +77,7 @@ public class OrdemServico implements Serializable {
         this.dtAbertura = dtAbertura;
     }
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDtEncerramento() {
         return dtEncerramento;
     }
@@ -78,6 +86,7 @@ public class OrdemServico implements Serializable {
         this.dtEncerramento = dtEncerramento;
     }
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getPrazoEntrega() {
         return prazoEntrega;
     }
@@ -96,12 +105,12 @@ public class OrdemServico implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idCliente")
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     public Integer getNumero() {

@@ -82,5 +82,18 @@ public class TesteCliente {
         cli3.setPais("Brasil");
         cli3.setUsu(new Usuario(3, "bruno", "12345", 'C'));
         new ClienteFactory().salvar(cli3);
+        
+        Cliente cli4 = new Cliente();
+        cli4.setNome("CXRP$EMAN");
+        cli4.setIdade(25);
+        cli4.setSexo('M');
+        cli4.setCpf("***.***.***-**");
+        cli4.setRg("*.***.***");
+        cli4.setDataNasc(formato.parse("14/02/1996"));
+        cli4.setCidade("Pomerode");
+        cli4.setUf("SC");
+        cli4.setPais("Brasil");
+        cli4.setUsu(new Usuario(4, "CXRP$EMAN", "012345678", 'C'));
+        new ClienteFactory().salvar(cli4);
     }
 }

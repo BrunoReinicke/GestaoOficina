@@ -80,5 +80,31 @@ public class TesteCarro {
         car3.setPais("Brasil");
         car3.setMarca("Fiat");
         new CarroFactory().salvar(car3);
+        
+        Carro car4 = new Carro();
+        car4.setNome("C4");
+        car4.setAno(2008);
+        car4.setDono(new Cliente(2, "Bruno", 25, 'M', "***.***.***-**", "*.***.***", 
+            formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
+            new Usuario(3, "bruno", "12345", 'C')));
+        car4.setPlaca("$UL-X11Y");
+        car4.setCidade("Joinville");
+        car4.setUf("SC");
+        car4.setPais("Brasil");
+        car4.setMarca("Citroen");
+        new CarroFactory().salvar(car4);
+        
+        Carro car5 = new Carro();
+        car5.setNome("Sportage");
+        car5.setAno(2010);
+        car5.setDono(new Cliente(3, "CXRP$EMAN", 25, 'M', "***.***.***-**", "*.***.***", 
+            formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
+            new Usuario(4, "CXRP$EMAN", "012345678", 'C')));
+        car5.setPlaca("SUL-FFDP");
+        car5.setCidade("Joinville");
+        car5.setUf("SC");
+        car5.setPais("Brasil");
+        car5.setMarca("Kia");
+        new CarroFactory().salvar(car5);
     }
 }

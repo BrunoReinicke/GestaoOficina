@@ -29,14 +29,12 @@ public class TesteUsuario {
         usua2.setTipo('A');
         new UsuaFactory().salvar(usua2);
         
-        
         // Consulta
         List<Usuario> lstUsu = (List<Usuario>) new UsuaFactory().consultar();
         System.out.println("Consulta sem filtro:");
         lstUsu.forEach((us) -> {
             System.out.println(us.toString());
         });
-        
         
         // Alteração  
         boolean existe = false;
@@ -56,7 +54,6 @@ public class TesteUsuario {
             }
         }
         
-        
         // Consulta
         System.out.println("Consulta com filtro:\n" + new UsuaFactory().consultar(i).toString() + "\n");
         List<Usuario> lstUsu2 = (List<Usuario>) new UsuaFactory().consultar();
@@ -65,18 +62,15 @@ public class TesteUsuario {
             System.out.println(us.toString());
         });      
         
-        
         // Exclusão
         new UsuaFactory().excluir(i);       
               
-        
         // Consulta
         List<Usuario> lstUsu3 = (List<Usuario>) new UsuaFactory().consultar();
         System.out.println("Consulta sem filtro:");
         lstUsu3.forEach((us) -> {
             System.out.println(us.toString());
         });
-        
         
         // Está logado
         Usuario usua4 = new Usuario();
@@ -90,5 +84,11 @@ public class TesteUsuario {
         usua5.setSenha("12345");
         usua5.setTipo('C');
         new UsuaFactory().salvar(usua5);
+        
+        Usuario usua6 = new Usuario();
+        usua6.setUsuario("CXRP$EMAN");
+        usua6.setSenha("012345678");
+        usua6.setTipo('C');
+        new UsuaFactory().salvar(usua6);
     }
 }

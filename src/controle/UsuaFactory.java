@@ -5,6 +5,7 @@
  */
 package controle;
 
+import java.util.List;
 import modelo.bean.Usuario;
 
 /**
@@ -21,9 +22,9 @@ public class UsuaFactory extends Factory {
         return super.consultar("from Usuario");
     }
     
-    public boolean isLogged(Usuario u) {
+    public List<Object> isLogged(Usuario u) {
         return super.consultar(
-            "from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'").size() > 0; 
+            "from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'"); 
     }
     
     @Override

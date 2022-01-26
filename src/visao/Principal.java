@@ -142,8 +142,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         this.log = new Login();
         this.log.setBtnCadUsu(this.jButton1);
-        this.log.setBtnConsUsu(this.jButton2);
-        this.log.setBtnConsOS(this.jButton3);
+        this.log.setBtnConsUsu(this.jButton3);
+        this.log.setBtnConsOS(this.jButton2);
         this.log.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -158,6 +158,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton2ComponentShown
+       // this.idUsuario = this.log.getIdUsuario();
         this.log.dispose();
     }//GEN-LAST:event_jButton2ComponentShown
     

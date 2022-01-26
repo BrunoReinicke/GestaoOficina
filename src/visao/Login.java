@@ -22,8 +22,7 @@ public class Login extends JFrame {
     private JButton btnConsUsu;
     private JButton btnConsOS;
     private int idUsuario;
-    private JFrame principal;
-            
+    
     /**
      * Creates new form Login
      */
@@ -130,11 +129,14 @@ public class Login extends JFrame {
         u.setUsuario(jTextField1.getText());
         u.setSenha(senha);
        
-        if (new UsuaFactory().isLogged(u)) {
-            this.btnCadUsu.setVisible(true);
-            this.btnConsUsu.setVisible(true);
+        if (new UsuaFactory().isLogged(u).size() > 0) {
+            this.idUsuario = ((Usuario) new UsuaFactory().isLogged(u).get(0)).getId();
+            
+            if (((Usuario) new UsuaFactory().isLogged(u).get(0)).getTipo() == 'A') {
+                this.btnCadUsu.setVisible(true);
+                this.btnConsUsu.setVisible(true);
+            }
             this.btnConsOS.setVisible(true);
-            this.idUsuario = u.getId();
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

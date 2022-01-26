@@ -76,7 +76,7 @@ public class TesteUsuario {
         Usuario usua4 = new Usuario();
         usua4.setUsuario("user");
         usua4.setSenha("pass");
-        System.out.println("Logado? " + new UsuaFactory().isLogged(usua4));
+        System.out.println("Logado? " + ((new UsuaFactory().isLogged(usua4)).size() > 0));
         
         
         Usuario usua5 = new Usuario();

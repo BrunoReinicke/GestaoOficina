@@ -5,9 +5,11 @@
  */
 package visao;
 
+import controle.ClienteFactory;
 import controle.OrdemServFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import modelo.bean.Cliente;
 import modelo.bean.OrdemServico;
 
 /**
@@ -115,7 +117,11 @@ public class ConsOrdemServico extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         OrdemServFactory osf = new OrdemServFactory();
-        List<Object> list = osf.consultar("from OrdemServico where idCliente = 2");
+        int idCliente = 
+            ((Cliente) (new ClienteFactory()
+                .consultar("from Cliente where idUsuario = " + this.idUsuario)).get(0)).getId();
+        
+        List<Object> list = osf.consultar("from OrdemServico where idCliente = "+idCliente+" and status = 0");
         String colunas[] = {"Número", "Cliente", "Carro", "Peça", "Data abertura", 
             "Data encerramento", "Prazo de entrega", "Peça trocada", "Status"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
@@ -123,22 +129,16 @@ public class ConsOrdemServico extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
             String status = "";
             String dtEncerramento = "";
-            String pecTrocada = "";
+            String pecTrocada = "Não";
             
             if (((OrdemServico) list.get(i)).getStatus() == 0) 
                status = "Em execução";
-            else 
-               status = "Encerrada";
             
             if (((OrdemServico) list.get(i)).getDtEncerramento() != null) 
                dtEncerramento = ((OrdemServico) list.get(i)).getDtEncerramento().toString();
-            else
-               dtEncerramento = "";
             
             if (((OrdemServico) list.get(i)).isPecaTrocada())
                pecTrocada = "Sim";
-            else
-               pecTrocada = "Não";
             
             modelo.addRow(new String[]{
                 ((OrdemServico) list.get(i)).getNumero().toString(), 

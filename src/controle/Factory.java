@@ -29,7 +29,7 @@ public class Factory {
         emf.close();
     }
     
-    protected List<Object> consultar(String sql) {
+    public List<Object> consultar(String sql) {
         Session session = new HibernateUtil().getSessionFactory().openSession();
         List<Object> list = 
             session.createQuery(sql).list();

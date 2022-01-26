@@ -50,11 +50,6 @@ public class OrdemServFactory extends Factory {
         return super.consultar("from OrdemServico where numero = " + numero);
     }
     
-    @Override
-    public List<Object> consultar(String sql) {
-        return super.consultar(sql);
-    }
-    
     public void excluir(Integer numero) {
         List<OrdemServico> lstOS = (List<OrdemServico>) this.consultar(numero);
         lstOS.forEach((os) -> {

@@ -22,7 +22,8 @@ public class UsuaFactory extends Factory {
     }
     
     public boolean isLogged(Usuario u) {
-        return super.consultar("from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'") != null; 
+        return super.consultar(
+            "from Usuario where usuario = '"+u.getUsuario()+"' and senha = '"+u.getSenha()+"'").size() > 0; 
     }
     
     @Override

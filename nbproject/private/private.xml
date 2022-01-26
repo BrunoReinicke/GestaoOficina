@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/modelo/bean/Fornecedor.java</file>
-            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/modelo/bean/Peca.java</file>
-            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TestePeca.java</file>
+            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TesteCliente.java</file>
+            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TesteCarro.java</file>
             <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TesteFornecedor.java</file>
-            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TesteUsuario.java</file>
-            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/controle/PecaFactory.java</file>
+            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/util/TesteAdministrador.java</file>
+            <file>file:/C:/Users/bruno/Documents/NetBeansProjects/GestaoOficina/src/visao/Principal.java</file>
         </group>
     </open-files>
 </project-private>

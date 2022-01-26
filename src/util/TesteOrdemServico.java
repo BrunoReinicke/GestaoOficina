@@ -26,7 +26,7 @@ public class TesteOrdemServico {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         
         // Cadastro
-        /*OrdemServico os = new OrdemServico();
+        OrdemServico os = new OrdemServico();
         os.setCarro(new Carro(2, "Palio", 1998, 
             new Cliente(2, "Bruno", 25, 'M', "***.***.***-**", "*.***.***", 
                 formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
@@ -116,7 +116,7 @@ public class TesteOrdemServico {
             formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
             new Usuario(4, "CXRP$EMAN", "012345678", 'C')));
         new OrdemServFactory().salvar(os5);
-        */
+        
         // Consulta
         List<OrdemServico> lstOS = (List<OrdemServico>) new OrdemServFactory().consultar();
         System.out.println("Consulta sem filtro:");
@@ -124,11 +124,9 @@ public class TesteOrdemServico {
             System.out.println(ordServ.toString());
         });
         
-        System.out.println("Consulta com filtro:\n" + new OrdemServFactory().consultar(2));
-        
         // Alteração
         OrdemServico os6 = new OrdemServico();
-        os6.setId(6);
+        os6.setId(5);
         os6.setCarro(new Carro(4, "Sportage", 2010, 
             new Cliente(3, "CXRP$EMAN", 25, 'M', "***.***.***-**", "*.***.***", 
                 formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
@@ -138,10 +136,11 @@ public class TesteOrdemServico {
             new Fornecedor(2, "Random", 42, 'M', "***.***.***-**", "*.***.***",
                 formato.parse("14/01/1980"), "Pomerode", "SC", "Brasil"),
             "Média"));
+        os6.setNumero(4);
         os6.setStatus(0);
         os6.setDtAbertura(formato.parse("25/01/2022"));
-        os6.setPrazoEntrega(formato.parse("31/01/2022"));
-        os6.setPecaTrocada(false);
+        os6.setPrazoEntrega(formato.parse("02/02/2022"));
+        os6.setPecaTrocada(true);
         os6.setCliente(new Cliente(3, "CXRP$EMAN", 25, 'M', "***.***.***-**", "*.***.***", 
             formato.parse("14/02/1996"), "Pomerode", "SC", "Brasil", 
             new Usuario(4, "CXRP$EMAN", "012345678", 'C')));
@@ -151,7 +150,7 @@ public class TesteOrdemServico {
         System.out.println("Consulta com filtro:\n" + new OrdemServFactory().consultar(2));
         
         // Exclusão
-        new OrdemServFactory().excluir(6);
+        new OrdemServFactory().excluir(1);
         
         // Consulta
         List<OrdemServico> lstOS2 = (List<OrdemServico>) new OrdemServFactory().consultar();

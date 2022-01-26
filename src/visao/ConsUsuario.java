@@ -79,12 +79,19 @@ public class ConsUsuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Usuário", "Senha"
+                "ID", "Usuário", "Senha", "Tipo"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -124,22 +131,19 @@ public class ConsUsuario extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         List<Usuario> list = (List<Usuario>) new UsuaFactory().consultar();
-        String colunas[]   = {"ID", "Usuário", "Senha"};
+        String colunas[]   = {"ID", "Usuário", "Senha", "Tipo"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
         
         for (int i = 0; i < list.size(); i++) {
             modelo.addRow(new String[]{
                 list.get(i).getId().toString(), 
                 list.get(i).getUsuario(), 
-                list.get(i).getSenha()});
+                list.get(i).getSenha(),
+                String.valueOf(list.get(i).getTipo())});
         }
         jTable3.setModel(modelo);
     }//GEN-LAST:event_formWindowOpened
 
-    public void fechar() {
-        this.dispose();
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

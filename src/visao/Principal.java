@@ -13,7 +13,7 @@ public class Principal extends javax.swing.JFrame {
 
     private int idUsuario;
     private Login log;
-    private CadUsuario caUs;
+    private CadtUsuario caUs;
     private ConsUsuario conUs;
     private ConsOrdemServico conOS;
     
@@ -21,6 +21,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+        this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         this.jButton1.setVisible(false);
         this.jButton2.setVisible(false);
@@ -43,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OSTPA");
 
         jButton1.setLabel("Cadastrar usuário");
         jButton1.setName("btnCadastrar"); // NOI18N
@@ -52,8 +54,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setLabel("Consultar ordem de serviço");
+        jButton2.setLabel("Consultar ordens de serviço");
         jButton2.setName("btnConsultar"); // NOI18N
+        jButton2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jButton2ComponentShown(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -69,6 +76,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton4.setText("Login");
+        jButton4.setName(""); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -97,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,14 +117,14 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.caUs = new CadUsuario();
+        this.caUs = new CadtUsuario();
         this.caUs.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -144,11 +152,15 @@ public class Principal extends javax.swing.JFrame {
         this.jButton2.setVisible(false);
         this.jButton3.setVisible(false);
         
-        this.caUs.fechar();
-        this.conOS.fechar();
-        this.conUs.fechar();
+        this.caUs.dispose();
+        this.conOS.dispose();
+        this.conUs.dispose();
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void jButton2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton2ComponentShown
+        this.log.dispose();
+    }//GEN-LAST:event_jButton2ComponentShown
+    
     /**
      * @param args the command line arguments
      */

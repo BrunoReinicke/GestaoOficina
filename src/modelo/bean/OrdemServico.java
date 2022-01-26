@@ -128,4 +128,9 @@ public class OrdemServico implements Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "OrdemServico{" + "id=" + id + ", carro=" + carro + ", peca=" + peca + ", numero=" + numero + ", status=" + status + ", dtAbertura=" + dtAbertura + ", dtEncerramento=" + dtEncerramento + ", prazoEntrega=" + prazoEntrega + ", pecaTrocada=" + pecaTrocada + ", cliente=" + cliente + '}';
+    }    
 }

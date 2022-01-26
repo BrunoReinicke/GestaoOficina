@@ -6,20 +6,23 @@
 package visao;
 
 import controle.UsuaFactory;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import modelo.bean.Usuario;
 
 /**
  *
  * @author bruno
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends JFrame {
 
     private JButton btnCadUsu;
     private JButton btnConsUsu;
     private JButton btnConsOS;
     private int idUsuario;
+    private JFrame principal;
             
     /**
      * Creates new form Login
@@ -48,6 +51,7 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
 
         jLabel1.setText("Usuário:");
         jLabel1.setToolTipText("");
@@ -77,7 +81,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,7 +135,6 @@ public class Login extends javax.swing.JFrame {
             this.btnConsUsu.setVisible(true);
             this.btnConsOS.setVisible(true);
             this.idUsuario = u.getId();
-            this.dispose();
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

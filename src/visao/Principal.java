@@ -11,11 +11,12 @@ package visao;
  */
 public class Principal extends javax.swing.JFrame {
 
-    private int idUsuario;
+    //private int idUsuario;
     private Login log;
     private CadtUsuario caUs;
     private ConsUsuario conUs;
     private ConsOrdemServico conOS;
+    private CadOrdemServico cadOS;
     
     /**
      * Creates new form Principal
@@ -26,6 +27,7 @@ public class Principal extends javax.swing.JFrame {
         this.jButton1.setVisible(false);
         this.jButton2.setVisible(false);
         this.jButton3.setVisible(false);
+        this.jButton6.setVisible(false);
     }
 
     /**
@@ -42,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OSTPA");
@@ -54,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setLabel("Consultar ordens de serviço");
+        jButton2.setText("Cosultar OS");
         jButton2.setName("btnConsultar"); // NOI18N
         jButton2.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -90,6 +93,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Cadastrar OS");
+        jButton6.setActionCommand("");
+        jButton6.setName("btnConsultar"); // NOI18N
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +113,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,7 +130,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
 
@@ -144,6 +159,7 @@ public class Principal extends javax.swing.JFrame {
         this.log.setBtnCadUsu(this.jButton1);
         this.log.setBtnConsUsu(this.jButton3);
         this.log.setBtnConsOS(this.jButton2);
+        this.log.setBtnCadOS(this.jButton6);
         this.log.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -151,16 +167,27 @@ public class Principal extends javax.swing.JFrame {
         this.jButton1.setVisible(false);
         this.jButton2.setVisible(false);
         this.jButton3.setVisible(false);
+        this.jButton6.setVisible(false);
         
         this.caUs.dispose();
         this.conOS.dispose();
         this.conUs.dispose();
+        this.cadOS.dispose();
+        
+        this.caUs.setVisible(false);
+        this.conOS.setVisible(false);
+        this.conUs.setVisible(false);
+        this.cadOS.setVisible(false);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton2ComponentShown
-       // this.idUsuario = this.log.getIdUsuario();
         this.log.dispose();
     }//GEN-LAST:event_jButton2ComponentShown
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        this.cadOS = new CadOrdemServico();
+        this.cadOS.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
     
     /**
      * @param args the command line arguments
@@ -203,5 +230,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     // End of variables declaration//GEN-END:variables
 }

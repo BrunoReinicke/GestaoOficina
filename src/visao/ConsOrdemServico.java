@@ -7,10 +7,12 @@ package visao;
 
 import controle.ClienteFactory;
 import controle.OrdemServFactory;
+import controle.UsuaFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.bean.Cliente;
 import modelo.bean.OrdemServico;
+import modelo.bean.Usuario;
 
 /**
  *
@@ -22,6 +24,7 @@ public class ConsOrdemServico extends javax.swing.JFrame {
      * Creates new form ConsOrdemServico
      */
     private int idUsuario;
+    private List<Object> lstOS;
     
     public ConsOrdemServico() {
         initComponents();
@@ -40,6 +43,9 @@ public class ConsOrdemServico extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,20 +98,47 @@ public class ConsOrdemServico extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jButton1.setText("Remover filtro");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Filtrar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 997, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -116,52 +149,83 @@ public class ConsOrdemServico extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2ComponentShown
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        OrdemServFactory osf = new OrdemServFactory();
-        int idCliente = 
-            ((Cliente) (new ClienteFactory()
-                .consultar("from Cliente where idUsuario = " + this.idUsuario)).get(0)).getId();
-        
-        List<Object> list = osf.consultar("from OrdemServico where idCliente = "+idCliente+" and status = 0");
-        String colunas[] = {"Número", "Cliente", "Carro", "Peça", "Data abertura", 
-            "Data encerramento", "Prazo de entrega", "Peça trocada", "Status"};
-        DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
-        
-        for (int i = 0; i < list.size(); i++) {
-            String status = "";
-            String dtEncerramento = "";
-            String pecTrocada = "Não";
-            
-            if (((OrdemServico) list.get(i)).getStatus() == 0) 
-               status = "Em execução";
-            
-            if (((OrdemServico) list.get(i)).getDtEncerramento() != null) 
-               dtEncerramento = ((OrdemServico) list.get(i)).getDtEncerramento().toString();
-            
-            if (((OrdemServico) list.get(i)).isPecaTrocada())
-               pecTrocada = "Sim";
-            
-            modelo.addRow(new String[]{
-                ((OrdemServico) list.get(i)).getNumero().toString(), 
-                ((OrdemServico) list.get(i)).getCliente().getNome(), 
-                ((OrdemServico) list.get(i)).getCarro().getNome(),
-                ((OrdemServico) list.get(i)).getPeca().getNome(),
-                ((OrdemServico) list.get(i)).getDtAbertura().toString(),
-                dtEncerramento,
-                ((OrdemServico) list.get(i)).getPrazoEntrega().toString(),
-                pecTrocada,
-                status});
-        }
-        jTable2.setModel(modelo);
+        if (((List<Usuario>) new UsuaFactory().consultar(this.idUsuario)).get(0).getTipo() == 'C') {
+            int idCliente = 
+                ((Cliente) (new ClienteFactory()
+                    .consultar("from Cliente where idUsuario = " + this.idUsuario)).get(0)).getId();          
+            lstOS = new OrdemServFactory().consultar("from OrdemServico where idCliente = "+idCliente+" and status = 0");
+        } else {
+            lstOS = new OrdemServFactory().consultar("from OrdemServico");
+        } 
+        this.carregarTabela("");
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        this.carregarTabela(jTextField1.getText());
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        this.carregarTabela("");
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+    
+    private void listarOrdensServ(DefaultTableModel modelo, String numero) {
+        for (int i = 0; i < lstOS.size(); i++) {
+            String status;
+            String dtEncerramento = "";
+            String pecTrocada = "Não";
+            String dtPrevisao = "";
+            
+            if (numero.equals("") || 
+               (Integer.valueOf(numero) == ((OrdemServico) lstOS.get(i)).getNumero())) {
+                if (((OrdemServico) lstOS.get(i)).getStatus() == 0) 
+                   status = "Em execução";
+                else
+                   status = "Encerrada"; 
+
+                if (((OrdemServico) lstOS.get(i)).getDtEncerramento() != null) 
+                   dtEncerramento = ((OrdemServico) lstOS.get(i)).getDtEncerramento().toString();
+
+                if (((OrdemServico) lstOS.get(i)).isPecaTrocada())
+                   pecTrocada = "Sim";
+
+                if (((OrdemServico) lstOS.get(i)).getPrazoEntrega() != null) 
+                   dtPrevisao = ((OrdemServico) lstOS.get(i)).getPrazoEntrega().toString();
+                
+                modelo.addRow(new String[]{
+                    ((OrdemServico) lstOS.get(i)).getNumero().toString(), 
+                    ((OrdemServico) lstOS.get(i)).getCliente().getNome(), 
+                    ((OrdemServico) lstOS.get(i)).getCarro().getNome(),
+                    ((OrdemServico) lstOS.get(i)).getPeca().getNome(),
+                    ((OrdemServico) lstOS.get(i)).getDtAbertura().toString(),
+                    dtEncerramento,
+                    dtPrevisao,
+                    pecTrocada,
+                    status});
+            }
+        }
+        jTable2.setModel(modelo);
+    }
+    
+    private void carregarTabela(String numero) {
+        String colunas[] = {"Número", "Cliente", "Carro", "Peça", "Data abertura", 
+            "Data encerramento", "Prazo de entrega", "Peça trocada", "Status"};
+        DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
+        
+        jTable2.setModel(modelo);
+        this.listarOrdensServ(modelo, numero);
+    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

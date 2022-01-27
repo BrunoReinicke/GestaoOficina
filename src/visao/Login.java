@@ -6,8 +6,6 @@
 package visao;
 
 import controle.UsuaFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import modelo.bean.Usuario;
@@ -21,6 +19,7 @@ public class Login extends JFrame {
     private JButton btnCadUsu;
     private JButton btnConsUsu;
     private JButton btnConsOS;
+    private JButton btnCadOS;
     private int idUsuario;
     
     /**
@@ -135,6 +134,7 @@ public class Login extends JFrame {
             if (((Usuario) new UsuaFactory().isLogged(u).get(0)).getTipo() == 'A') {
                 this.btnCadUsu.setVisible(true);
                 this.btnConsUsu.setVisible(true);
+                this.btnCadOS.setVisible(true);
             }
             this.btnConsOS.setVisible(true);
         }
@@ -161,6 +161,14 @@ public class Login extends JFrame {
 
     public int getIdUsuario() {
         return this.idUsuario;
+    }
+
+    public JButton getBtnCadOS() {
+        return btnCadOS;
+    }
+
+    public void setBtnCadOS(JButton btnCadOS) {
+        this.btnCadOS = btnCadOS;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

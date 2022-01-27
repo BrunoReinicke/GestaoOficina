@@ -172,8 +172,8 @@ public class CadOrdemServico extends javax.swing.JFrame {
         
         try {
             os.setDtAbertura(formato.parse(jTextField11.getText()));
-            os.setDtEncerramento(formato.parse(jTextField12.getText()));
             os.setPrazoEntrega(formato.parse(jTextField13.getText()));
+            os.setDtEncerramento(formato.parse(jTextField12.getText()));
         } catch (ParseException pe) {
             //
         }
@@ -183,7 +183,7 @@ public class CadOrdemServico extends javax.swing.JFrame {
         else
             os.setPecaTrocada(false);
         
-        if (jTextField15.getText().equals("Em atendimento"))
+        if (jTextField15.getText().equals("Em execução"))
             os.setStatus(0);
         else
             os.setStatus(1);
